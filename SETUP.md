@@ -33,7 +33,7 @@ powershell.exe -Command "Start-Process powershell -Verb RunAs -ArgumentList 'cd 
 Clone this repo and start all shared services:
 
 ```bash
-git clone git@github.com:YOUR_ORG/dev-infrastructure.git ~/docker
+git clone git@github.com:emitkowski/docker-local.git ~/docker
 cd ~/docker && docker compose up -d
 ```
 
@@ -43,7 +43,7 @@ Verify all are running:
 docker ps
 ```
 
-You should see `nginx-proxy` and `mysql` containers running.
+You should see `nginx-proxy`, `mysql`, `redis`, and `mailpit` containers running.
 
 ---
 
@@ -55,17 +55,27 @@ Clone each project and follow its `NEW_PROJECT.md` for full setup. Key steps are
 The Laravel starter template — set up first as it's the reference.
 
 ```bash
-git clone git@github.com:YOUR_ORG/replica.git ~/code/replica
+git clone git@github.com:emitkowski/replica.git ~/code/replica
 cd ~/code/replica
+cp .env.example .env
 ```
 
-Follow `NEW_PROJECT.md` in full.
+Update `.env`:
+| Variable | Value |
+|---|---|
+| `APP_NAME` | `Laravel` |
+| `APP_URL` | `https://replica.test` |
+| `APP_DOMAIN` | `replica.test` |
+| `DB_DATABASE` | `replica` |
+| `VITE_PORT` | `5174` |
+
+Follow `NEW_PROJECT.md` in full for SSL cert, hosts file, and migration steps.
 
 ---
 
 ### advisor
 ```bash
-git clone git@github.com:YOUR_ORG/advisor.git ~/code/advisor
+git clone git@github.com:emitkowski/advisor.git ~/code/advisor
 cd ~/code/advisor
 cp .env.example .env
 ```
@@ -78,9 +88,6 @@ Update `.env`:
 | `APP_DOMAIN` | `advisor.test` |
 | `DB_DATABASE` | `advisor` |
 | `VITE_PORT` | `5175` |
-| `FORWARD_REDIS_PORT` | `6381` |
-| `FORWARD_MAILPIT_PORT` | `1029` |
-| `FORWARD_MAILPIT_DASHBOARD_PORT` | `8026` |
 
 ```bash
 # SSL cert
@@ -98,10 +105,10 @@ echo "127.0.0.1 advisor.test" | sudo tee -a /etc/hosts
 docker exec mysql mysql -uroot -ppassword -e "CREATE DATABASE IF NOT EXISTS advisor CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 
 # Install and start
-composer install
-npm install
-php artisan key:generate
 ./vendor/bin/sail up -d
+./vendor/bin/sail composer install
+./vendor/bin/sail npm install
+./vendor/bin/sail artisan key:generate
 ./vendor/bin/sail artisan migrate
 ```
 
@@ -109,12 +116,18 @@ php artisan key:generate
 
 ### larablocks.com
 ```bash
-git clone git@github.com:YOUR_ORG/larablocks.com.git ~/code/larablocks.com
+git clone git@github.com:emitkowski/larablocks.com.git ~/code/larablocks.com
 cd ~/code/larablocks.com
 cp .env.example .env
 ```
 
-Update `.env` with the correct values for this project (check the existing `.env.example`).
+Update `.env`:
+| Variable | Value |
+|---|---|
+| `APP_NAME` | `Larablocks Local` |
+| `APP_URL` | `https://larablocks.test` |
+| `APP_DOMAIN` | `larablocks.test` |
+| `DB_DATABASE` | `larablocks` |
 
 ```bash
 # SSL cert
@@ -133,10 +146,10 @@ docker exec mysql mysql -uroot -ppassword -e "CREATE DATABASE IF NOT EXISTS lara
 docker exec mysql mysql -uroot -ppassword -e "CREATE DATABASE IF NOT EXISTS vueblocks CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 
 # Install and start
-composer install
-npm install
-php artisan key:generate
 ./vendor/bin/sail up -d
+./vendor/bin/sail composer install
+./vendor/bin/sail npm install
+./vendor/bin/sail artisan key:generate
 ./vendor/bin/sail artisan migrate
 ```
 
