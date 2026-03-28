@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="MagicentoSettings">
+    <option name="pathToMage" value="D:/git/qbd/app/Mage.php" />
+    <option name="enabled" value="false" />
+    <option name="pathToPhp" value="" />
+    <option name="urlToMagento" value="" />
+    <option name="packages" value="" />
+    <option name="themes" value="" />
+    <option name="basicAuthUsername" value="" />
+    <option name="basicAuthPassword" value="" />
+    <option name="pathsToMagentoSerialized" value="D:/git/qbd" />
+    <option name="pathToMagentoForNewFiles" value="D:/git/qbd" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>PHP</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>GeneralPHP</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+</project>

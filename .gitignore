@@ -1,0 +1,14 @@
+# SSL certificates — regenerate with mkcert on each machine
+proxy/certs/
+
+# MySQL data directory — persists on disk, not tracked in git
+mysql/data/
+
+# nginx-proxy auto-generated vhost config
+proxy/vhost/
+
+# One-time migration scripts
+mysql/update-compose.py
+
+# Database dumps
+*.sql
