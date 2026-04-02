@@ -56,3 +56,5 @@ Each line should include both the shared service container (`redis`, `mailpit`, 
 ```bash
 cd ~/docker && docker compose down && docker compose up -d
 ```
+
+> **Warning:** never run `docker compose down -v` — the `-v` flag removes volumes and will permanently delete all MySQL data stored in `mysql/data/`.
